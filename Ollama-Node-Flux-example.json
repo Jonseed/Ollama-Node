@@ -1,0 +1,551 @@
+{
+  "name": "Ollama Node Flux example workflow",
+  "author": "",
+  "description": "",
+  "version": "",
+  "contact": "",
+  "tags": "",
+  "notes": "",
+  "exposedFields": [
+    {
+      "nodeId": "26810069-59e3-4c09-a1ab-9ff9260d1435",
+      "fieldName": "prompt"
+    }
+  ],
+  "meta": {
+    "version": "3.0.0",
+    "category": "user"
+  },
+  "nodes": [
+    {
+      "id": "26810069-59e3-4c09-a1ab-9ff9260d1435",
+      "type": "invocation",
+      "data": {
+        "id": "26810069-59e3-4c09-a1ab-9ff9260d1435",
+        "version": "1.0.0",
+        "nodePack": "ollama_node",
+        "label": "",
+        "notes": "",
+        "type": "ollama_prompt_node",
+        "inputs": {
+          "model": {
+            "name": "model",
+            "label": "",
+            "value": "llama3.1:8b-instruct-q5_K_M"
+          },
+          "prompt": {
+            "name": "prompt",
+            "label": "",
+            "value": "A photographic portrait of an elderly man."
+          },
+          "system_prompt": {
+            "name": "system_prompt",
+            "label": "",
+            "value": "You are creating a prompt for an AI text-to-image generator. You will start with a brief prompt provided by the user. You will expand the brief prompt into a detailed natural language prompt, including:\n\nMedium: Briefly state the type of visual medium, whether photograph, painting, sculpture, printmaking, digital art, etc.\nSubjects: Describe the main subjects, their appearance, clothing, expressions, and actions.\nSetting: Elaborate on the setting, including time of day, weather, and environment details.\nBackground Elements: Add details about the background, secondary characters, and relevant objects or props.\nSensory Details: Incorporate sensory experiences such as sounds, smells, and textures.\nArtistic Style: Include details about the artistic style, color palette, and stylistic choices, as well as any additional details about the medium, such as camera model and type and lens, if photography.\n\nHere is an example of receiving a user input prompt and expanding it:\n\nUser Input Prompt: “sunset on a beach”\n\nYour expanded Prompt response: “A serene sunset scene on a tranquil beach. The sky is painted with hues of orange, pink, and purple as the sun dips below the horizon. Gentle waves lap against the shore, where a young woman in a flowing white dress stands barefoot, gazing out at the sea. Her hair is tousled by a light breeze, and she holds a small bouquet of wildflowers. In the background, a lighthouse stands tall on a rocky outcrop, its light beginning to flicker on. Seagulls call softly as they glide overhead, and the scent of saltwater mingles with the fragrance of blooming jasmine. The scene is reminiscent of an impressionist painting, with soft, blended brushstrokes and a warm, inviting color palette.”\n\nDon't say anything else except the expanded prompt itself. No introductory phrase, and no quotation marks.\n\nThe user will now give you the input brief prompt to expand:"
+          },
+          "unload_model": {
+            "name": "unload_model",
+            "label": "",
+            "value": true
+          }
+        },
+        "isOpen": true,
+        "isIntermediate": true,
+        "useCache": false
+      },
+      "position": {
+        "x": -266.0880621342835,
+        "y": 201.36311244926748
+      }
+    },
+    {
+      "id": "flux_model_loader:hvOboKlBCn",
+      "type": "invocation",
+      "data": {
+        "id": "flux_model_loader:hvOboKlBCn",
+        "version": "1.0.4",
+        "nodePack": "invokeai",
+        "label": "",
+        "notes": "",
+        "type": "flux_model_loader",
+        "inputs": {
+          "model": {
+            "name": "model",
+            "label": "",
+            "value": {
+              "key": "18140157-671b-43b8-ac4b-b4e97f6c70d3",
+              "hash": "blake3:930ca47fa2a17b4163fb228385a026d6f55c1deb88d59672f4d69f2d332d9b45",
+              "name": "flux1-dev-bnb-nf4-v2",
+              "base": "flux",
+              "type": "main",
+              "submodel_type": null
+            }
+          },
+          "t5_encoder_model": {
+            "name": "t5_encoder_model",
+            "label": "",
+            "value": {
+              "key": "7d7bfe78-03b4-463a-aea0-3a5165497e32",
+              "hash": "blake3:38aafa42899cf4fe8b1055d17de6e7fe15af104d193da4a320e34ca24db32754",
+              "name": "t5_bnb_int8_quantized_encoder",
+              "base": "any",
+              "type": "t5_encoder"
+            }
+          },
+          "clip_embed_model": {
+            "name": "clip_embed_model",
+            "label": "",
+            "value": {
+              "key": "794c3ab1-402a-43c1-b1b4-13ee19052134",
+              "hash": "blake3:17c19f0ef941c3b7609a9c94a659ca5364de0be364a91d4179f0e39ba17c3b70",
+              "name": "clip-vit-large-patch14",
+              "base": "any",
+              "type": "clip_embed",
+              "submodel_type": null
+            }
+          },
+          "vae_model": {
+            "name": "vae_model",
+            "label": "",
+            "value": {
+              "key": "4b27e970-680d-450d-bd65-e5ffb662675b",
+              "hash": "blake3:ce21cb76364aa6e2421311cf4a4b5eb052a76c4f1cd207b50703d8978198a068",
+              "name": "FLUX.1-schnell_ae",
+              "base": "flux",
+              "type": "vae",
+              "submodel_type": null
+            }
+          }
+        },
+        "isOpen": true,
+        "isIntermediate": true,
+        "useCache": true
+      },
+      "position": {
+        "x": -380.7038626609443,
+        "y": 777.2703862660944
+      }
+    },
+    {
+      "id": "flux_text_encoder:m0iXQyQ50v",
+      "type": "invocation",
+      "data": {
+        "id": "flux_text_encoder:m0iXQyQ50v",
+        "version": "1.0.0",
+        "nodePack": "invokeai",
+        "label": "",
+        "notes": "",
+        "type": "flux_text_encoder",
+        "inputs": {
+          "clip": {
+            "name": "clip",
+            "label": ""
+          },
+          "t5_encoder": {
+            "name": "t5_encoder",
+            "label": ""
+          },
+          "t5_max_seq_len": {
+            "name": "t5_max_seq_len",
+            "label": ""
+          },
+          "prompt": {
+            "name": "prompt",
+            "label": "",
+            "value": "a test sign"
+          }
+        },
+        "isOpen": true,
+        "isIntermediate": true,
+        "useCache": true
+      },
+      "position": {
+        "x": 215.57577831843287,
+        "y": 667.795135128438
+      }
+    },
+    {
+      "id": "flux_denoise:rUzlcR494A",
+      "type": "invocation",
+      "data": {
+        "id": "flux_denoise:rUzlcR494A",
+        "version": "2.1.0",
+        "nodePack": "invokeai",
+        "label": "",
+        "notes": "",
+        "type": "flux_denoise",
+        "inputs": {
+          "board": {
+            "name": "board",
+            "label": ""
+          },
+          "metadata": {
+            "name": "metadata",
+            "label": ""
+          },
+          "latents": {
+            "name": "latents",
+            "label": ""
+          },
+          "denoise_mask": {
+            "name": "denoise_mask",
+            "label": ""
+          },
+          "denoising_start": {
+            "name": "denoising_start",
+            "label": "",
+            "value": 0
+          },
+          "denoising_end": {
+            "name": "denoising_end",
+            "label": "",
+            "value": 1
+          },
+          "trajectory_guidance_strength": {
+            "name": "trajectory_guidance_strength",
+            "label": "",
+            "value": 0
+          },
+          "transformer": {
+            "name": "transformer",
+            "label": ""
+          },
+          "positive_text_conditioning": {
+            "name": "positive_text_conditioning",
+            "label": ""
+          },
+          "width": {
+            "name": "width",
+            "label": "",
+            "value": 1024
+          },
+          "height": {
+            "name": "height",
+            "label": "",
+            "value": 1024
+          },
+          "num_steps": {
+            "name": "num_steps",
+            "label": "",
+            "value": 20
+          },
+          "guidance": {
+            "name": "guidance",
+            "label": "",
+            "value": 3
+          },
+          "seed": {
+            "name": "seed",
+            "label": "",
+            "value": 935020072
+          }
+        },
+        "isOpen": true,
+        "isIntermediate": true,
+        "useCache": true
+      },
+      "position": {
+        "x": 195,
+        "y": 1060
+      }
+    },
+    {
+      "id": "core_metadata:cfIJL8J7wf",
+      "type": "invocation",
+      "data": {
+        "id": "core_metadata:cfIJL8J7wf",
+        "version": "2.0.0",
+        "nodePack": "invokeai",
+        "label": "",
+        "notes": "",
+        "type": "core_metadata",
+        "inputs": {
+          "generation_mode": {
+            "name": "generation_mode",
+            "label": "",
+            "value": "flux_txt2img"
+          },
+          "positive_prompt": {
+            "name": "positive_prompt",
+            "label": "",
+            "value": "a test sign"
+          },
+          "negative_prompt": {
+            "name": "negative_prompt",
+            "label": ""
+          },
+          "width": {
+            "name": "width",
+            "label": "",
+            "value": 1024
+          },
+          "height": {
+            "name": "height",
+            "label": "",
+            "value": 1024
+          },
+          "seed": {
+            "name": "seed",
+            "label": "",
+            "value": 935020071
+          },
+          "rand_device": {
+            "name": "rand_device",
+            "label": ""
+          },
+          "cfg_scale": {
+            "name": "cfg_scale",
+            "label": ""
+          },
+          "cfg_rescale_multiplier": {
+            "name": "cfg_rescale_multiplier",
+            "label": ""
+          },
+          "steps": {
+            "name": "steps",
+            "label": "",
+            "value": 20
+          },
+          "scheduler": {
+            "name": "scheduler",
+            "label": ""
+          },
+          "seamless_x": {
+            "name": "seamless_x",
+            "label": ""
+          },
+          "seamless_y": {
+            "name": "seamless_y",
+            "label": ""
+          },
+          "clip_skip": {
+            "name": "clip_skip",
+            "label": ""
+          },
+          "model": {
+            "name": "model",
+            "label": "",
+            "value": {
+              "key": "18140157-671b-43b8-ac4b-b4e97f6c70d3",
+              "hash": "blake3:930ca47fa2a17b4163fb228385a026d6f55c1deb88d59672f4d69f2d332d9b45",
+              "name": "flux1-dev-bnb-nf4-v2",
+              "base": "flux",
+              "type": "main",
+              "submodel_type": null
+            }
+          },
+          "controlnets": {
+            "name": "controlnets",
+            "label": ""
+          },
+          "ipAdapters": {
+            "name": "ipAdapters",
+            "label": ""
+          },
+          "t2iAdapters": {
+            "name": "t2iAdapters",
+            "label": ""
+          },
+          "loras": {
+            "name": "loras",
+            "label": ""
+          },
+          "strength": {
+            "name": "strength",
+            "label": ""
+          },
+          "init_image": {
+            "name": "init_image",
+            "label": ""
+          },
+          "vae": {
+            "name": "vae",
+            "label": "",
+            "value": {
+              "key": "4b27e970-680d-450d-bd65-e5ffb662675b",
+              "hash": "blake3:ce21cb76364aa6e2421311cf4a4b5eb052a76c4f1cd207b50703d8978198a068",
+              "name": "FLUX.1-schnell_ae",
+              "base": "flux",
+              "type": "vae",
+              "submodel_type": null
+            }
+          },
+          "hrf_enabled": {
+            "name": "hrf_enabled",
+            "label": ""
+          },
+          "hrf_method": {
+            "name": "hrf_method",
+            "label": ""
+          },
+          "hrf_strength": {
+            "name": "hrf_strength",
+            "label": ""
+          },
+          "positive_style_prompt": {
+            "name": "positive_style_prompt",
+            "label": ""
+          },
+          "negative_style_prompt": {
+            "name": "negative_style_prompt",
+            "label": ""
+          },
+          "refiner_model": {
+            "name": "refiner_model",
+            "label": ""
+          },
+          "refiner_cfg_scale": {
+            "name": "refiner_cfg_scale",
+            "label": ""
+          },
+          "refiner_steps": {
+            "name": "refiner_steps",
+            "label": ""
+          },
+          "refiner_scheduler": {
+            "name": "refiner_scheduler",
+            "label": ""
+          },
+          "refiner_positive_aesthetic_score": {
+            "name": "refiner_positive_aesthetic_score",
+            "label": ""
+          },
+          "refiner_negative_aesthetic_score": {
+            "name": "refiner_negative_aesthetic_score",
+            "label": ""
+          },
+          "refiner_start": {
+            "name": "refiner_start",
+            "label": ""
+          }
+        },
+        "isOpen": true,
+        "isIntermediate": true,
+        "useCache": true
+      },
+      "position": {
+        "x": 565,
+        "y": 1060
+      }
+    },
+    {
+      "id": "canvas_output:stuODVqoHi",
+      "type": "invocation",
+      "data": {
+        "id": "canvas_output:stuODVqoHi",
+        "version": "1.0.0",
+        "nodePack": "invokeai",
+        "label": "",
+        "notes": "",
+        "type": "flux_vae_decode",
+        "inputs": {
+          "board": {
+            "name": "board",
+            "label": ""
+          },
+          "metadata": {
+            "name": "metadata",
+            "label": ""
+          },
+          "latents": {
+            "name": "latents",
+            "label": ""
+          },
+          "vae": {
+            "name": "vae",
+            "label": ""
+          }
+        },
+        "isOpen": true,
+        "isIntermediate": false,
+        "useCache": false
+      },
+      "position": {
+        "x": 178.29703851188856,
+        "y": 1785.8801847242153
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "reactflow__edge-26810069-59e3-4c09-a1ab-9ff9260d1435generated_prompt-core_metadata:cfIJL8J7wfpositive_prompt",
+      "type": "default",
+      "source": "26810069-59e3-4c09-a1ab-9ff9260d1435",
+      "target": "core_metadata:cfIJL8J7wf",
+      "sourceHandle": "generated_prompt",
+      "targetHandle": "positive_prompt"
+    },
+    {
+      "id": "reactflow__edge-26810069-59e3-4c09-a1ab-9ff9260d1435generated_prompt-flux_text_encoder:m0iXQyQ50vprompt",
+      "type": "default",
+      "source": "26810069-59e3-4c09-a1ab-9ff9260d1435",
+      "target": "flux_text_encoder:m0iXQyQ50v",
+      "sourceHandle": "generated_prompt",
+      "targetHandle": "prompt"
+    },
+    {
+      "id": "c7b70430-7418-4a50-a2bf-b1a701ee7264",
+      "type": "default",
+      "source": "flux_model_loader:hvOboKlBCn",
+      "target": "flux_denoise:rUzlcR494A",
+      "sourceHandle": "transformer",
+      "targetHandle": "transformer"
+    },
+    {
+      "id": "2c584b1c-586a-47a4-acd5-4c721adca323",
+      "type": "default",
+      "source": "flux_model_loader:hvOboKlBCn",
+      "target": "canvas_output:stuODVqoHi",
+      "sourceHandle": "vae",
+      "targetHandle": "vae"
+    },
+    {
+      "id": "c8007f63-f7cb-46fd-9e41-2b4d32bda4c7",
+      "type": "default",
+      "source": "flux_model_loader:hvOboKlBCn",
+      "target": "flux_text_encoder:m0iXQyQ50v",
+      "sourceHandle": "clip",
+      "targetHandle": "clip"
+    },
+    {
+      "id": "7781c0f7-a15c-45dc-bd9e-f47117a3cb3e",
+      "type": "default",
+      "source": "flux_model_loader:hvOboKlBCn",
+      "target": "flux_text_encoder:m0iXQyQ50v",
+      "sourceHandle": "t5_encoder",
+      "targetHandle": "t5_encoder"
+    },
+    {
+      "id": "282b0782-cd8b-4e39-adc6-fb7822ebfc7b",
+      "type": "default",
+      "source": "flux_model_loader:hvOboKlBCn",
+      "target": "flux_text_encoder:m0iXQyQ50v",
+      "sourceHandle": "max_seq_len",
+      "targetHandle": "t5_max_seq_len"
+    },
+    {
+      "id": "46e8fedb-18d1-4b4b-a540-9e6225bcf43b",
+      "type": "default",
+      "source": "flux_text_encoder:m0iXQyQ50v",
+      "target": "flux_denoise:rUzlcR494A",
+      "sourceHandle": "conditioning",
+      "targetHandle": "positive_text_conditioning"
+    },
+    {
+      "id": "7ea1aa38-ade4-41b6-bc58-96ff6c6befb0",
+      "type": "default",
+      "source": "flux_denoise:rUzlcR494A",
+      "target": "canvas_output:stuODVqoHi",
+      "sourceHandle": "latents",
+      "targetHandle": "latents"
+    },
+    {
+      "id": "c7d71c35-5dd6-49b4-bf8d-064c963acf40",
+      "type": "default",
+      "source": "core_metadata:cfIJL8J7wf",
+      "target": "canvas_output:stuODVqoHi",
+      "sourceHandle": "metadata",
+      "targetHandle": "metadata"
+    }
+  ]
+}
