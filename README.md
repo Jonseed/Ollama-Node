@@ -23,6 +23,8 @@ The [Community Nodes](https://invoke-ai.github.io/InvokeAI/nodes/communityNodes/
 > 
 > To use a community workflow, download the `.json` node graph file and load it into Invoke AI via the **Load Workflow** button in the Workflow Editor.
 
+Please note, by default it looks for the Ollama server at `http://localhost:11434`. If you have Ollama installed at a different address or port, this will need to be manually adjusted in the `ollama_node.py` file in two places.
+
 # Credit
 
 This node was inspired by the [Oobabooga node](https://github.com/sammyf/oobabooga-node) by [Sammy Fischer](https://github.com/sammyf), but that repo now seems to be defunct.
